@@ -2,7 +2,7 @@ import avatar from "../assets/avatar.avif"
 import { Link } from "react-router-dom";
 
 // export default NavBar;
-import { Search, Notifications, AccountCircle } from '@mui/icons-material';
+import { Search, Notifications} from '@mui/icons-material';
 
 const NavBar = () => {
   return (
@@ -33,7 +33,6 @@ const NavBar = () => {
         </div>
       </div>
       </div>
-      
     </div>
   );
 };

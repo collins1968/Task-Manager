@@ -1,8 +1,8 @@
-import ProfilePage from "../components/profile"
+import ProjectPage from "../components/ProjectComponent/ProjectPage";
 const TestPage = () => {
     return (
        <>
-         <ProfilePage/>
+         <ProjectPage/>
        </>
       
     )

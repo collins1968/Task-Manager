@@ -10,15 +10,21 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import { Link } from 'react-router-dom';
 import LogoutButton from './LogoutComponent';
+import { useState } from 'react';
 const sideBar1 = () => {
-  const {collapseSidebar} = useProSidebar();
+  const [collapsed, setCollapsed] = useState(false);
+  const handleWindowResize = () => {
+    setCollapsed(window.innerWidth <= 760);
+  };
+  // const {collapseSidebar} = useProSidebar();
   return (
-    <Sidebar style={{ height: "100vh" }}>
+    <Sidebar collapsed={collapsed} style={{ height: "100vh" }}>
         <Menu>
           <MenuItem
             icon={<MenuOutlinedIcon />}
             onClick={() => {
-              collapseSidebar();
+              setCollapsed(!collapsed);
+              // collapseSidebar();
             }}
             style={{ textAlign: "center" }}
           >
@@ -29,18 +35,18 @@ const sideBar1 = () => {
           
           <MenuItem icon={<PeopleOutlinedIcon />}>Team</MenuItem>
           <SubMenu icon={<ContactsOutlinedIcon />} label='projects'>
-          <MenuItem icon={<ContactsOutlinedIcon />}>Project 1</MenuItem>
-          <MenuItem icon={<ContactsOutlinedIcon />}>Project 2</MenuItem>
-          <MenuItem icon={<ContactsOutlinedIcon />}>Project 3</MenuItem>
+            <Link to="./project"><MenuItem icon={<ContactsOutlinedIcon />}>Task Manager</MenuItem></Link>
+            <Link to="./project"><MenuItem icon={<ContactsOutlinedIcon />}>E-Commerce</MenuItem></Link>
+            <Link to="./project"><MenuItem icon={<ContactsOutlinedIcon />}>Social Media</MenuItem></Link>
           </SubMenu>
-          <Link to="/home/new-task" > <MenuItem icon={<AddTaskOutlinedIcon />}>Add Task</MenuItem> </Link>
-          <Link to="/home/profile">
+          <Link to="./new-task" > <MenuItem icon={<AddTaskOutlinedIcon />}>Add Task</MenuItem> </Link>
+          <Link to="./profile">
           <MenuItem icon={<ReceiptOutlinedIcon />}>Profile</MenuItem>
           </Link>
-          <Link to="/home/FAQs">
+          <Link to="./FAQs">
           <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
           </Link>
-          <Link to="/home/calendar">
+          <Link to="./calendar">
           <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
           </Link>
           <LogoutButton />

@@ -19,9 +19,7 @@
     --info: #2F80ED;
 }
 body{
-    background: var(--background-color);
-    /* width: 100vw;
-    height: 847px; */
+    background: var(--sec-background);
 }
 
 

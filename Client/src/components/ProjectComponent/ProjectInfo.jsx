@@ -1,4 +1,4 @@
-import avatar from '../assets/avatar.avif'
+import avatar from '../../assets/avatar.avif'
 
 const ProjectInfo = () => {
     return (

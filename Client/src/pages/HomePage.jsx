@@ -6,8 +6,8 @@ import AddTaskForm from "../components/AddNewTaskForm";
 import { Route, Routes } from 'react-router-dom';
 import CalendarComponent from "../components/Calendar";
 import FAQComponent from "../components/FAQComponent";
-import SideBar from "../components/SideBar";
 import  ProfilePage from "../components/profile"
+import Project from "../components/ProjectComponent/ProjectPage";
 
 
 const HomePage = () => {
@@ -26,6 +26,7 @@ const HomePage = () => {
         <Route path="/calendar" element={<CalendarComponent />} />
         <Route path="/FAQs" element={<FAQComponent />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/project" element={<Project/>} />
 
           </Routes>
       </div>
@@ -33,6 +34,5 @@ const HomePage = () => {
     </div>
   )
 }
-
 
 export default HomePage;
