@@ -10,7 +10,7 @@ const RecentActivity = () => {
             className="min-h-0 min-w-0 w-6 shrink-0"
           />
           <div className="whitespace-nowrap text-sm font-['Inter'] text-[#1b1a17] mr-1 w-56">
-            Nader Mahrous.<div className="contents">Joined the project</div>
+            Collins Mwendwa <div className="contents">created a task</div>
           </div>
           <div className="whitespace-nowrap text-xs font-['Inter'] text-[#89898a] w-16 shrink-0">
             1days ago
@@ -22,9 +22,9 @@ const RecentActivity = () => {
             className="min-h-0 min-w-0 w-6 shrink-0"
           />
           <div className="whitespace-nowrap text-sm font-['Inter'] text-[#1b1a17] self-center w-64 mt-px mr-1">
-            Nora Ashraf.
+            Kevin
             <div className="contents">
-              Assign a new task to you <br />( barkli home page)
+              Assign a new task to you <br />( ecommerce website)
             </div>
           </div>
           <div className="whitespace-nowrap text-xs font-['Inter'] text-[#89898a] mt-px w-16 shrink-0">
@@ -33,35 +33,11 @@ const RecentActivity = () => {
         </div>
         <div className="flex flex-row gap-1 items-center mb-4 mr-16">
           <img
-            src="https://file.rendit.io/n/QtU3Lkl8C8dQwi9boDnq.svg"
-            className="min-h-0 min-w-0 w-6 shrink-0"
-          />
-          <div className="whitespace-nowrap text-sm font-['Inter'] text-[#1b1a17] mr-1 w-48">
-            Reem Galal.<div className="contents">Reported an issue</div>
-          </div>
-          <div className="whitespace-nowrap text-xs font-['Inter'] text-[#89898a] w-16 shrink-0">
-            2days ago
-          </div>
-        </div>
-        <div className="flex flex-row gap-1 items-center mb-4 mr-16">
-          <img
-            src="https://file.rendit.io/n/63gCbjCNQCcMwhz2WRRE.svg"
-            className="min-h-0 min-w-0 w-6 shrink-0"
-          />
-          <div className="whitespace-nowrap text-sm font-['Inter'] text-[#1b1a17] mr-1 w-48">
-            Nader Elsayed.<div className="contents">Uploaded a file</div>
-          </div>
-          <div className="whitespace-nowrap text-xs font-['Inter'] text-[#89898a] w-16 shrink-0">
-            3days ago
-          </div>
-        </div>
-        <div className="flex flex-row gap-1 items-center mb-4 mr-16">
-          <img
             src="https://file.rendit.io/n/xA6IOTY3zfSFKtkpL6AH.svg"
             className="min-h-0 min-w-0 w-6 shrink-0"
           />
           <div className="whitespace-nowrap text-sm font-['Inter'] text-[#1b1a17] mr-1 w-48">
-            Ahmed zizo.<div className="contents">Started new task</div>
+            Collins Mwendwa<div className="contents">Started new task</div>
           </div>
           <div className="whitespace-nowrap text-xs font-['Inter'] text-[#89898a] w-16 shrink-0">
             4days ago
@@ -73,10 +49,10 @@ const RecentActivity = () => {
             className="min-h-0 min-w-0 w-6 shrink-0"
           />
           <div className="whitespace-nowrap text-sm font-['Inter'] text-[#1b1a17] self-center w-48 mt-px mr-1">
-            Ezz Elsayed.
+            Collins Mwendwa.
             <div className="contents">
               Completed task
-              <br />( barkli prototype)
+              <br />( Task Manager Frontend)
             </div>
           </div>
           <div className="whitespace-nowrap text-xs font-['Inter'] text-[#89898a] mt-px w-16 shrink-0">

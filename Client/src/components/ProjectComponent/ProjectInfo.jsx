@@ -1,14 +1,14 @@
 import avatar from '../../assets/avatar.avif'
 
-const ProjectInfo = () => {
+const ProjectInfo = ({title, description}) => {
     return (
         <>
         <div className="border-solid border-[#eaeaea] bg-white flex flex-col gap-2 w-full h-[426px] items-start p-8 border rounded">
   <div className="whitespace-nowrap text-sm font-['Inter'] font-semibold capitalize text-[#1b1a17] mb-6 w-20">
-    Project info
+    {title}
   </div>
   <div className="text-sm font-['Inter'] text-[#89898a] self-stretch mb-6 h-[19.89%]">
-    This is a project description for a task manager to develop a software for a client to manage their tasks. This is a project description for a task manager to develop a software for a client to manage their tasks. This is a project description for a task manager to develop a software for a client to manage their tasks. 
+    {description}
   </div>
   <div className="self-stretch flex flex-row gap-8 items-center mb-1 mr-[141px]">
     <div className="text-xs font-['Inter'] text-[#89898a] mr-16 w-8 shrink-0">

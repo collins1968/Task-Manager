@@ -1,7 +1,6 @@
 import express from 'express';
 import config from './db/config.js';
 import TaskRoute from './Routes/taskRoutes.js';
-import { closeDb, connectDB } from './utils/database.js';
 import cors from 'cors';
 import UserRoutes from './Routes/userRoutes.js';
 

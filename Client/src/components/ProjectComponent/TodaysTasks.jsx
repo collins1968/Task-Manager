@@ -5,7 +5,7 @@ const TodaysTasks = () => {
           Start from
         </div>
         <div className="whitespace-nowrap text-xs font-['Inter'] font-medium capitalize text-[#89898a] absolute top-10 left-3 h-4 w-12">
-          9.00 am
+          20th july
         </div>
         <div className="text-xs font-['Inter'] font-medium capitalize text-[#1b1a17] absolute top-4 left-[141px] h-4 w-10">
           Design
@@ -24,7 +24,7 @@ const TodaysTasks = () => {
           Assigned to
         </div>
         <div className="whitespace-nowrap text-xs font-['Inter'] font-medium capitalize text-[#89898a] absolute top-10 left-[530px] h-4 w-20">
-          ahmed nader
+         Collins Mwendwa 
         </div>
         <div className="border-dashed border-[#bdbdbd] h-20 shrink-0 border rounded-lg" />
       </div>

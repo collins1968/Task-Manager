@@ -5,7 +5,7 @@ const TodayTaskProjectPage = () => {
         <div className="border-solid border-[#eaeaea] bg-white flex flex-col justify-end gap-4 w-full pt-8 pb-4 px-6 border rounded">
         <div className="flex flex-row justify-between items-center mb-1 ml-2">
           <div className="whitespace-nowrap text-sm font-['Inter'] text-[#1b1a17] w-20 shrink-0">
-            Todays task
+            upcoming tasks
           </div>
           <img
             src="https://file.rendit.io/n/mrEgR1SsO4LUWXrdOvRO.svg"

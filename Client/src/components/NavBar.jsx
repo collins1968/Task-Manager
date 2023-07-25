@@ -1,10 +1,12 @@
 import avatar from "../assets/avatar.avif"
 import { Link } from "react-router-dom";
-
-// export default NavBar;
+import {Context} from "../context/userContext/context"
+import { useContext } from "react";
 import { Search, Notifications} from '@mui/icons-material';
+import ProfileCircle from "./ProfileCircle";
 
 const NavBar = () => {
+  const {user} = useContext(Context)
   return (
     <div className="bg-[#ededed] flex flex-row justify-between gap-5 w-screen md:w-auto items-center px-8 py-2">
       <div className="bg-[#e5e5e5] flex flex-row justify-between w-1/2 h-12 items-center px-4 rounded-lg">
@@ -18,18 +20,14 @@ const NavBar = () => {
       <div className='flex items-center gap-5'>
       <Notifications className="h-10 w-10 text-gray-500" />
       <Link to="/home/profile">
-      <img
-            className="h-14 w-14 rounded-full ml-4"
-            src={avatar}
-            alt="Profile"
-          />
+          <ProfileCircle firstName={user.first_name} lastName={user.last_name} />
       </Link>
       <div className="flex flex-col gap-2">
         <div className="whitespace-nowrap text-sm font-[Inter] mr-4">
-          Collins Mwendwa
+          {user.first_name} {user.last_name}
         </div>
         <div className="whitespace-nowrap text-xs font-[Inter] text-black/40">
-          Admin/Product Manager
+          {user.role}
         </div>
       </div>
       </div>

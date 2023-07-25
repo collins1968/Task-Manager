@@ -1,57 +1,62 @@
-export const AllTaskSingle = () => {
+import React from "react";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import StatusChange from "./StatusChange";
+import { useState, useContext } from 'react';
+import { Context } from "../context/userContext/context";
+
+const AllTaskSingle = ({task_id, title, description, priority, date, status }) => {
+  const { user } = useContext(Context);
+  const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
+  const handleStatusDropdownToggle = () => {
+    // Toggle the status dropdown visibility
+    setIsStatusDropdownOpen((prevState) => !prevState);
+  };
   return (
-    <div className="border-dashed border-[#bdbdbd] flex flex-col gap-3 h-[211px] shrink-0 items-start px-6 py-4 border rounded ">
+   <div className="border-solid border-[#bdbdbd] flex flex-col gap-3 h-[211px] max-w-[250px] items-start mb-4 px-4 py-2 border rounded bg-white shadow-md transition-shadow hover:shadow-lg">
       <div className="self-stretch flex flex-row justify-between items-center mb-2 ml-1 mr-2">
-        <div className="text-xs font-['Inter'] text-[#89898a] w-10 shrink-0">
-          Design
+        <div className="text-xs font-semibold text-gray-700 w-10 shrink-0">
+          {title}
         </div>
-        <img
-          src="https://file.rendit.io/n/NHCzI991wXIHN98Iu3ia.svg"
-          className="min-h-0 min-w-0 w-4 shrink-0"
-        />
-      </div>
-      <div className="whitespace-nowrap text-xs font-['Inter'] font-medium capitalize text-[#1b1a17] w-2/3 mb-2 ml-1">
-        Design new home page
-      </div>
-      <div className="flex flex-row gap-px w-3/5 items-center mb-6 ml-1">
-        <div className="bg-[#f2994a] flex flex-col mr-1 w-16 shrink-0 px-2 py-px rounded">
-          <div className="text-xs font-['Inter'] text-white">Medium</div>
+        <div className="relative">
+          <MoreHorizIcon
+            onClick={handleStatusDropdownToggle}
+            className="min-h-0 min-w-0 w-4 shrink-0 cursor-pointer text-gray-500 hover:text-gray-800"
+            alt="User"
+          />
+          {isStatusDropdownOpen && (
+            <StatusChange newStatus={status} taskId={task_id} handleStatusDropdownToggle user={user} />
+          )}
         </div>
-        <img
-          src="https://file.rendit.io/n/bf8R8IeX8AfROTBlMlwj.png"
-          className="min-h-0 min-w-0 w-5 shrink-0"
-        />
-        <img
-          src="https://file.rendit.io/n/c1X4dq4i7aivuqP9n6Z4.png"
-          className="min-h-0 min-w-0 w-5 shrink-0"
-        />
-        <img
-          src="https://file.rendit.io/n/zrX1dBsod8fNOMB5GUm0.png"
-          className="min-h-0 min-w-0 w-5 shrink-0"
-        />
       </div>
-      <div className="text-xs font-['Inter'] text-[#89898a] ml-1 w-20">
-        March27,2022
+      <div className="whitespace-nowrap text-xs font-medium capitalize text-[#1b1a17] w-full mb-2 ml-1 overflow-hidden text-ellipsis text-gray-700">
+        {description}
       </div>
-      <div className="border-solid border-[#eaeaea] self-stretch h-px shrink-0 mb-px ml-px bordert borderb-0 borderx-0" />
-      <div className="flex flex-row ml-2 gap-2 w-20 items-center">
-        <img
-          src="https://file.rendit.io/n/6ermmaBk3FusPujImZPx.svg"
-          className="min-h-0 min-w-0 w-3 shrink-0"
-        />
-        <div className="text-xs font-['Inter'] text-[#89898a] mr-2 w-2 shrink-0">
+      <p>{status}</p>
+      <div className={`${
+        priority === "high" ? "bg-[#EB5757]" : priority === "medium" ? "bg-[#F2994A]" : "bg-[#C8D9CF]"
+      } flex flex-col items-center w-16 px-2 py-px rounded text-xs font-semibold text-white capitalize`}>
+        {priority}
+      </div>
+      <div className="text-xs font-medium text-[#89898a] ml-1">
+        {date}
+      </div>
+      <div className="border-solid border-[#eaeaea] self-stretch h-px mb-px ml-px bordert borderb-0 borderx-0" />
+      <div className="flex flex-row ml-2 gap-2 items-center text-[#89898a] text-xs">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10l-2 2m0 0l-2-2m2 2V3m0 7v4m10 5H2a2 2 0 01-2-2V7a2 2 0 012-2h20a2 2 0 012 2v10a2 2 0 01-2 2z" />
+        </svg>
+        <div className="w-2">
           2
         </div>
-        <img
-          src="https://file.rendit.io/n/M4SiGLet78WfNoXCjicd.svg"
-          className="min-h-0 min-w-0 w-3 shrink-0"
-        />
-        <div className="text-xs font-['Inter'] text-[#89898a] w-2 shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10l-2 2m0 0l-2-2m2 2V3m0 7v4m10 5H2a2 2 0 01-2-2V7a2 2 0 012-2h20a2 2 0 012 2v10a2 2 0 01-2 2z" />
+        </svg>
+        <div className="w-2">
           2
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default AllTaskSingle;

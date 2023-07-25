@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import { MenuItem } from 'react-pro-sidebar';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import { useContext } from 'react';
+import { Context } from '../context/userContext/context';
+import { useNavigate } from 'react-router-dom';
+import {toast} from 'react-toastify'
+
 
 const LogoutButton = () => {
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const { dispatch } = useContext(Context);
+  const Navigate = useNavigate();
 
   const handleLogout = () => {
-    // Perform logout action here
-    // Example: dispatch a logout action or clear user session
-    console.log('Logging out...');
+    dispatch({ type: 'LOGOUT' });
+    Navigate("/");
+    toast.success("Logged out successfully")
   };
 
   const toggleConfirmation = () => {

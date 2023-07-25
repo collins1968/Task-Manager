@@ -1,4 +1,5 @@
-import { CreateUser, GetUsers, login } from "../Controllers/userController.js";
+import { CreateUser, GetUsers, login, UpdateUser } from "../Controllers/userController.js";
+import VerifyToken from "../utils/VerifyToken.js";
 
 const UserRoutes = (app) => {
     app.route("/users")
@@ -7,6 +8,8 @@ const UserRoutes = (app) => {
     .post(CreateUser)
     app.route("/login")
     .post(login)
+    app.route("/user")
+    .put(VerifyToken, UpdateUser)
   
 }
 
