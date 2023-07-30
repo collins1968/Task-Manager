@@ -87,7 +87,7 @@ Contributions to the Project Title are welcome! Please follow the guidelines out
 This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
-For any inquiries or feedback, feel free to reach out to us at [contact@example.com](collinsmwendwa1968@gmail.com) or visit our GitHub profile: [github.com/collins1968](https://github.com/collins1968).
+For any inquiries or feedback, feel free to reach out to us at [collinsmwendwa1968@example.com](collinsmwendwa1968@gmail.com) or visit our GitHub profile: [github.com/collins1968](https://github.com/collins1968).
 
 We look forward to hearing from you and appreciate your interest in the Project Title! Happy task managing!
 
