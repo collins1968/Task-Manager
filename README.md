@@ -1,6 +1,6 @@
 # Project Manager
 
-![Project Logo](/Client/components/logo.png)
+![Project Logo]([/Client/components/logo.png](https://github.com/collins1968/Task-Manager/blob/master/Images/tasklogo.png?raw=true))
 
 ## Table of Contents
 
