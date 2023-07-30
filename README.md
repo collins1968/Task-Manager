@@ -52,17 +52,24 @@ The Project Title is a web application that provides a comprehensive task manage
 - **Deployment:** Heroku
 
 ## Installation
-
 Follow these steps to set up the project locally:
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
-2. Change into the project directory: `cd project-directory`
-3. Install dependencies: `npm install`
+Clone the repository: `git clone https://github.com/collins1968/Task-Manger.git`
+
+### Backend
+1. Change into the project directory: `cd backend`
+2. Install dependencies: `npm install`
+3. Create a `.env` file and add the required environment variables.
+4. Start the backend server: `npm run dev`
+
+###client
+1. Navigate to the client folder: `cd client`
+2. Install dependancies: `npm install` 
+3. Start the development server: `npm run dev`
 
 ## Usage
 
-1. Run the development server: `npm start`
-2. Open your browser and go to `http://localhost:3000`
+2. Open your browser and go to `http://localhost:5173`
 
 ## Contributing
 
