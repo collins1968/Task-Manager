@@ -1,4 +1,4 @@
-import { CreateTask, GetTasks, getTasksByUserId, DeleteTask, updateTask, GetProjects, getCommentsByTaskId, AddComment, GetTaskById, ChangeTaskStatus, filterTasksByPriority, filterTasksByStatus, filterTasksByProjectName, getProjectStatistics, filterTasks } from "../Controllers/taskController.js";
+import { CreateTask, GetTasks, getTasksByUserId, DeleteTask, updateTask, GetProjects, getCommentsByTaskId, AddComment, GetTaskById, ChangeTaskStatus, filterTasksByPriority, filterTasksByStatus, filterTasksByProjectName, getProjectStatistics, filterTasks, GetUsersAssigned, assignTaskToUsers, searchTasks, GetProjectById } from "../Controllers/taskController.js";
 import VerifyToken from "../utils/VerifyToken.js";
 
 const TaskRoute = (app) => {
@@ -12,11 +12,16 @@ const TaskRoute = (app) => {
     .delete(VerifyToken, DeleteTask)
     .put(VerifyToken, updateTask)
     .patch(VerifyToken, ChangeTaskStatus)
+    app.route('/task/:task_id/users')
+    .post(VerifyToken, assignTaskToUsers)
+    .get(VerifyToken, GetUsersAssigned)
     app.route('/task/:task_id/comment')
      .get(VerifyToken, getCommentsByTaskId)
      .post(VerifyToken, AddComment)
     app.route('/projects')
     .get(VerifyToken, GetProjects)
+    app.route('/tasks/search/:searchQuery')
+    .get(VerifyToken, searchTasks)
     app.route('/tasks/priority')
     .get(VerifyToken, filterTasksByPriority )
     app.route('/tasks/status')
@@ -25,8 +30,10 @@ const TaskRoute = (app) => {
     .get(VerifyToken, filterTasksByProjectName)
     app.route('/projects/:project_id')
     .get(VerifyToken, getProjectStatistics)
+    app.route('/project/:project_id')
+    .get(VerifyToken, GetProjectById)
     app.route('/AllTasks')
     .get(VerifyToken, filterTasks)
-} 
+}   
 
 export default TaskRoute

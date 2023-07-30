@@ -1,14 +1,38 @@
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { apiUrl } from "../../utils/utils";
+import { Context } from "../../context/userContext/context";
 import avatar from '../../assets/avatar.avif'
 
-const ProjectInfo = ({title, description}) => {
+const ProjectInfo = ({project_id}) => {
+  const [projectData, setProjectData] = useState([]);
+  const {user} = useContext(Context);
+  // const [projectData, setProjectData] = useState([]);
+
+  // Function to fetch the project data from the API
+  const fetchProjectData = async () => {
+    try {
+      console.log(project_id);
+      const response = await axios.get(`${apiUrl}/project/${project_id}`, { headers: { token: `${user.token}` } });
+      setProjectData(response.data[0]); // Assuming the response data is an array of project objects
+    } catch (error) {
+      console.error('Error fetching project data:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (project_id) {
+      fetchProjectData();
+    }
+  }, [project_id]);
     return (
         <>
         <div className="border-solid border-[#eaeaea] bg-white flex flex-col gap-2 w-full h-[426px] items-start p-8 border rounded">
   <div className="whitespace-nowrap text-sm font-['Inter'] font-semibold capitalize text-[#1b1a17] mb-6 w-20">
-    {title}
+    {projectData.project_title}
   </div>
   <div className="text-sm font-['Inter'] text-[#89898a] self-stretch mb-6 h-[19.89%]">
-    {description}
+    {projectData.project_description}
   </div>
   <div className="self-stretch flex flex-row gap-8 items-center mb-1 mr-[141px]">
     <div className="text-xs font-['Inter'] text-[#89898a] mr-16 w-8 shrink-0">

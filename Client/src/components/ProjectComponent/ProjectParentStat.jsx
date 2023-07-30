@@ -4,7 +4,7 @@ import axios from "axios";
 import { apiUrl } from "../../utils/utils";
 import { useParams } from "react-router-dom";
 import PieChart from "./PieChart"
-import BarChart from "./BarChart"
+import BarChart from "../BarChart"
 import DonutChart from "./DonutChart";
 
 const ProjectStatsParent = ({project_id}) => {

@@ -55,6 +55,7 @@ const TaskTableComponent = ({ tasks}) => {
       ))}
     </thead>
     <tbody {...getTableBodyProps()}>
+      
       {rows.map((row) => {
         prepareRow(row);
         return (

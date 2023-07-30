@@ -13,7 +13,8 @@ const AllTaskColumn = () => {
   const openTasks = tasks.filter((task) => task.status === "Open");
   const inProgressTasks = tasks.filter((task) => task.status === "In Progress");
   const completedTasks = tasks.filter((task) => task.status === "Completed");
-  const overdueTasks = tasks.filter((task) => task.status === "Overdue");
+  const PendingTasks = tasks.filter((task) => task.status === "Pending");
+  // const overdueTasks = tasks.filter((task) => task.status === "Overdue");
 
   if (isLoading) {
     // return <div>Loading...</div>;
@@ -43,7 +44,8 @@ const AllTaskColumn = () => {
       <StatusColumn status="Open" tasks={openTasks} />
       <StatusColumn status="In Progress" tasks={inProgressTasks} />
       <StatusColumn status="Completed" tasks={completedTasks} />
-      <StatusColumn status="Overdue" tasks={overdueTasks} />
+      <StatusColumn status="Pending" tasks={PendingTasks} />
+      {/* <StatusColumn status="Overdue" tasks={overdueTasks} /> */}
     </div>
   </div>
 );

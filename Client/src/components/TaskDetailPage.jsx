@@ -8,26 +8,36 @@ import axios from "axios";
 import { apiUrl } from "../utils/utils";
 import { Context } from "../context/userContext/context";
 import {toast} from "react-toastify"
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 
 
 const TaskDetailPage = () => {
   const { user } = useContext(Context);
   const [comments, setComments] = useState([]); // Initialize with an empty array for comments
   const [newComment, setNewComment] = useState(""); // State to store the new comment text
-  const assignedUsers = [
-    { id: 1001, FirstName: "John", LastName: "Doe", profilePicture: "path-to-picture" },
-    { id: 1002, FirstName: "Collins", LastName: "Mwendwa", profilePicture: "path-to-picture" },
-  ];
+  const [assignedUsers, setAssignedUsers] = useState([]);
   // Get the task_id from the URL using useParams hook
   const { task_id } = useParams();
   // Access the tasks from the TaskContext
   const { tasks } = useContext(TaskContext);
-
   // Find the selected task by matching the task_id
   // const selectedTask = tasks.find((task) => task.task_id === task_id);
   const selectedTask = tasks.find((task) => task.task_id === parseInt(task_id));
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchAssignedUsers = async () => {
+      try {
+        // Make a GET request to fetch assigned users
+        const response = await axios.get(`${apiUrl}/task/${task_id}/users` , { headers: { token: `${user.token}` } });
+        setAssignedUsers(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchAssignedUsers(); // Call the function to fetch assigned users
+  }, [task_id]);
   useEffect(() => {
     // Function to fetch comments by task_id
     const fetchComments = async () => {
@@ -86,7 +96,7 @@ const handleAddComment = async () => {
   };
 
   const handleStatusChange = (newStatus) => {
-    // Add your logic to handle changing the status here
+    
     setIsStatusDropdownOpen(false);
   };
 
@@ -107,23 +117,36 @@ const handleAddComment = async () => {
   
   return (
     <div className="flex flex-col md:flex-row gap-8 p-8">
-    {/* Assigned Users Sidebar */}
-    <div className="bg-white rounded-lg shadow-lg p-4 flex-none w-full md:w-64 md:mr-8">
-      <h3 className="text-lg font-bold mb-2">Assigned Users</h3>
-      <div className="flex flex-wrap gap-2">
-        {assignedUsers.map((user) => (
-          <ProfileCircle
-            key={user.id}
-            name={user.name}
-            imageUrl={user.profilePicture}
-            size={10}
-          />
-        ))}
-        <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#F2994A] text-white text-[30px] font-italics cursor-pointer">
-          +
-        </div>
+      {/* Assigned Users Sidebar */}
+      <div className="bg-white rounded-lg shadow-lg p-4 flex-none w-full md:w-64 md:mr-8">
+        <h3 className="text-lg font-bold mb-4">Assigned Users</h3>
+        <ul className="space-y-2">
+          {assignedUsers.map((user) => (
+            <li
+              key={user.id}
+              className="flex items-center space-x-2 transition duration-300 hover:bg-gray-100 rounded p-2 cursor-pointer"
+            >
+              <ProfileCircle
+                firstName={user.first_name}
+                lastName={user.last_name}
+                name={`${user.first_name} ${user.last_name}`}
+                imageUrl={user.profilePicture}
+                size={10}
+              />
+              <span className="text-sm font-medium">
+                {user.first_name} {user.last_name}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Add New User Button */}
+        <button className="flex items-center mt-4 space-x-2 text-[#F2994A] hover:text-[#F2994A] focus:outline-none">
+          <PersonAddAltOutlinedIcon fontSize="large" />
+          <span className="text-sm font-medium">Add User</span>
+        </button>
       </div>
-    </div>
+   
   
     {/* Task Details */}
     <div className="bg-white rounded-lg shadow-lg p-4 flex-1 transition-shadow hover:shadow-xl">
@@ -131,13 +154,7 @@ const handleAddComment = async () => {
         <div className="relative">
         <button
   onClick={handleStatusDropdownToggle}
-  className={`flex items-center justify-center ${
-    selectedTask.status === "completed"
-      ? "bg-green-500"
-      : selectedTask.status === "In Progress"
-      ? "bg-yellow-500"
-      : "bg-red-500"
-  } text-white text-xs font-medium rounded px-4 py-2 transition-colors hover:bg-opacity-80 cursor-pointer`}
+  className={`flex items-center justify-center] bg-indigo-500 text-white text-xs font-medium rounded px-4 py-2 transition-colors hover:bg-opacity-80 cursor-pointer`}
 >
             {selectedTask.status}
             <ExpandMoreIcon className="ml-1" />
@@ -163,15 +180,28 @@ const handleAddComment = async () => {
           </div>
         </div>
       </div>
+      <h2>{selectedTask.title}</h2>
       <p className="text-gray-600 text-sm mb-6">{selectedTask.description}</p>
-      <div className="text-xs text-gray-600">{selectedTask.date}</div>
+      <div className="text-xs text-gray-600 mb-2"><strong>Start date:</strong>{' '}
+                  {new Date(selectedTask.due_date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}</div>
+      <div className="flex justify-between items-center"></div>
+      <div className="text-xs text-gray-600 mb-2"><strong>Due date:</strong>{' '}
+                  {new Date(selectedTask.start_date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}</div>
       <div className="flex justify-between items-center">
-  {/* <button
+  <button
     onClick={() => handleEdit(selectedTask.task_id)}
     className="px-2 py-1 rounded bg-blue-500 text-white hover:bg-blue-600"
   >
-    Editt
-  </button> */}
+    Edit
+  </button>
   <button
     onClick={() => handleDelete(selectedTask.task_id)}
     className="px-2 py-1 rounded bg-red-500 text-white hover:bg-red-600"
@@ -191,12 +221,12 @@ const handleAddComment = async () => {
         ) : (
           <div className="comments-container space-y-4">
             {comments.map((comment) => (
-              <div key={comment.id} className="bg-gray-100 p-4 rounded-lg">
+              <div key={comment.id} className="bg-gray-100 p-1 rounded-lg">
                 <p className="text-gray-600 mb-1">{comment.content}</p>
                 <p className="text-sm text-gray-500">
-                  By {comment.user_name}
-                  {/* on {Date(comment.created_at)} */}
+                  @ {comment.user_name}  {new Date(comment.created_at).toLocaleString()}
                 </p>
+                
               </div>
             ))}
           </div>
@@ -207,11 +237,11 @@ const handleAddComment = async () => {
   placeholder="Add a comment..."
   value={newComment}
   onChange={(e) => setNewComment(e.target.value)}
-  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+  className="w-full px-4 py-1 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
 />
           <button
             onClick={handleAddComment}
-            className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-700"
+            className="bg-indigo-500 text-white px-4 py-1 rounded hover:bg-indigo-700"
           >
             Add Comment
           </button>

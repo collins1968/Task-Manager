@@ -105,19 +105,25 @@ export const CreateTask = async (req, res) => {
              padding: 10px 0;
            }
        
-           /* Style the button with a nice gradient background */
+           /* Style the button with a nice gradient background and hover effect */
            .btn-primary {
              display: inline-block;
-             padding: 10px 20px;
+             padding: 12px 30px;
              background: linear-gradient(135deg, #007BFF 0%, #00BCD4 100%);
              color: #fff;
              text-decoration: none;
-             border-radius: 4px;
+             border-radius: 30px;
+             transition: background-color 0.3s ease;
+           }
+       
+           .btn-primary:hover {
+             background: #007BFF;
            }
        
            /* Center the button */
            .action-button {
              text-align: center;
+             margin-top: 30px;
            }
        
            /* Add a separator line after the button */
@@ -148,15 +154,15 @@ export const CreateTask = async (req, res) => {
              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkEDXuxoiPnWDkwgYh0lPbk56IHIcb7SRDXg&usqp=CAU" alt="Your Logo" style="max-width: 150px;">
            </div>
            <div class="task-details">
-             <h2 style="color: #007BFF; font-weight: bold; font-size: 24px; text-align: center;">Task Assignment</h2>
-             <p>Hello,</p>
-             <p style="font-size: 16px;">You have been assigned a new task.</p>
+             <h2 style="color: #007BFF; font-weight: bold; font-size: 24px; text-align: center; margin-bottom: 20px;">Task Assignment</h2>
+             <p style="font-size: 16px; margin-bottom: 10px;">Hello,</p>
+             <p style="font-size: 16px; margin-bottom: 20px;">You have been assigned a new task.</p>
              <p style="font-size: 16px; margin-bottom: 10px;">Task Details:</p>
              <ul>
-               <li><strong>Title:</strong> ${title}</li>
-               <li><strong>Description:</strong> ${description}</li>
-               <li><strong>Priority:</strong> ${priority}</li>
-               <li><strong>Due Date:</strong> ${due_date}</li>
+               <li style="font-size: 14px;"><strong>Title:</strong> ${title}</li>
+               <li style="font-size: 14px;"><strong>Description:</strong> ${description}</li>
+               <li style="font-size: 14px;"><strong>Priority:</strong> ${priority}</li>
+               <li style="font-size: 14px;"><strong>Due Date:</strong> ${due_date}</li>
              </ul>
            </div>
            <div class="action-button">
@@ -168,6 +174,7 @@ export const CreateTask = async (req, res) => {
          </div>
        </body>
        </html>
+       
        
      `,
    };
@@ -202,8 +209,8 @@ export const GetTasks = async( req, res) => {
 //assign task to a person
 export const assignTaskToUsers = async (req, res) => {
   try {
-    const { task_id, user_ids } = req.body;
-
+    const { task_id } = req.params;
+    const userId = req.user.userId;
     await db.executeProcedure('AssignTaskToUsers', {
       task_id,
       user_ids,
@@ -236,6 +243,18 @@ export const GetTaskById = async (req, res) =>{
     const userId = req.user.userId;
     const {task_id} = req.params
     const result = await db.executeProcedure("GetTaskById", { task_id });
+    res.status(200).json(result.recordset);
+  } catch (error) {
+    res.json({error: error.message})
+  }
+}
+
+//get a single project by id
+export const GetProjectById = async (req, res) =>{
+  try {
+    const userId = req.user.userId;
+    const {project_id} = req.params
+    const result = await db.executeProcedure("getProjectById", { project_id });
     res.status(200).json(result.recordset);
   } catch (error) {
     res.json({error: error.message})
@@ -304,6 +323,16 @@ export const getCommentsByTaskId = async (req, res) => {
   try {
     const { task_id } = req.params;
     const result = await db.executeProcedure("GetCommentsByTaskId", { task_id });
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+export const GetUsersAssigned = async (req, res) => {
+  try {
+    const { task_id } = req.params;
+    const result = await db.executeProcedure("GetAssignedUsers", { task_id });
     res.json(result.recordset);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -421,9 +450,16 @@ export const filterTasks = async (req, res) => {
   }
 };
 
-
-
-
+//search task by title
+export const searchTasks = async (req, res) => {
+  try {
+    const { searchQuery } = req.params;
+    const result = await db.executeProcedure('GetFilteredTasks', { searchQuery });
+    res.json(result.recordset);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 
 

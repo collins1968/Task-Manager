@@ -3,8 +3,10 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import StatusChange from "./StatusChange";
 import { useState, useContext } from 'react';
 import { Context } from "../context/userContext/context";
+import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
-const AllTaskSingle = ({task_id, title, description, priority, date, status }) => {
+const AllTaskSingle = ({task_id, title, description, priority, due_date, status }) => {
   const { user } = useContext(Context);
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
   const handleStatusDropdownToggle = () => {
@@ -12,9 +14,9 @@ const AllTaskSingle = ({task_id, title, description, priority, date, status }) =
     setIsStatusDropdownOpen((prevState) => !prevState);
   };
   return (
-   <div className="border-solid border-[#bdbdbd] flex flex-col gap-3 h-[211px] max-w-[250px] items-start mb-4 px-4 py-2 border rounded bg-white shadow-md transition-shadow hover:shadow-lg">
-      <div className="self-stretch flex flex-row justify-between items-center mb-2 ml-1 mr-2">
-        <div className="text-xs font-semibold text-gray-700 w-10 shrink-0">
+    <div className="border-solid border-[#bdbdbd] flex flex-col gap-3 h-[211px] max-w-[250px] items-start mb-4 px-4 py-2 border rounded bg-white shadow-md transition-shadow hover:shadow-lg">
+    <div className="self-stretch flex flex-row justify-between items-center mb-2 ml-1 mr-2">
+      <div className="text-xs font-semibold text-gray-700 w-[150px] shrink-0 overflow-hidden whitespace-nowrap overflow-ellipsis">
           {title}
         </div>
         <div className="relative">
@@ -28,18 +30,24 @@ const AllTaskSingle = ({task_id, title, description, priority, date, status }) =
           )}
         </div>
       </div>
+      <Link to = {`/home/${task_id}`}  className="flex flex-col gap-3 max-w-[200px] ">
+      <div className="text-xs font-medium text-[#89898a] ml-1">
+      {' '}
+                  {new Date(due_date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+      </div>
       <div className="whitespace-nowrap text-xs font-medium capitalize text-[#1b1a17] w-full mb-2 ml-1 overflow-hidden text-ellipsis text-gray-700">
         {description}
       </div>
-      <p>{status}</p>
       <div className={`${
         priority === "high" ? "bg-[#EB5757]" : priority === "medium" ? "bg-[#F2994A]" : "bg-[#C8D9CF]"
       } flex flex-col items-center w-16 px-2 py-px rounded text-xs font-semibold text-white capitalize`}>
         {priority}
       </div>
-      <div className="text-xs font-medium text-[#89898a] ml-1">
-        {date}
-      </div>
+      
       <div className="border-solid border-[#eaeaea] self-stretch h-px mb-px ml-px bordert borderb-0 borderx-0" />
       <div className="flex flex-row ml-2 gap-2 items-center text-[#89898a] text-xs">
         <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -55,6 +63,7 @@ const AllTaskSingle = ({task_id, title, description, priority, date, status }) =
           2
         </div>
       </div>
+      </Link>
     </div>
   );
 };
