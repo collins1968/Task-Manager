@@ -1,6 +1,9 @@
 # Project Manager
 
-![Project Logo]([/Client/components/logo.png](https://github.com/collins1968/Task-Manager/blob/master/Images/tasklogo.png?raw=true))
+  <img src="https://github.com/collins1968/Task-Manager/blob/master/Client/src/assets/BlueLogo.png?raw=true" alt="projectLogo" height="250" align="center" >
+
+
+<!-- ![project](https://github.com/collins1968/Task-Manager/blob/master/Images/tasklogo.png?raw=true) -->
 
 ## Table of Contents
 
@@ -43,13 +46,13 @@ The Project Title is a web application that provides a comprehensive task manage
 
 - **Frontend:** React.js, HTML5, CSS3
 - **Backend:** Node.js, Express.js
-- **Database:** MongoDB
+- **Database:** Microsoft sql server
 - **Authentication:** JSON Web Tokens (JWT)
 - **Data Visualization:** Recharts
 - **File Uploads:** Multer
 - **API Testing:** Jest, Supertest
 - **Version Control:** Git, GitHub
-- **Deployment:** Heroku
+- **Deployment:** Azure
 
 ## Installation
 Follow these steps to set up the project locally:
@@ -69,7 +72,11 @@ Clone the repository: `git clone https://github.com/collins1968/Task-Manger.git`
 
 ## Usage
 
-2. Open your browser and go to `http://localhost:5173`
+1. Open your browser and go to `http://localhost:5173`
+
+## sreenshots
+![screenshot1](https://github.com/collins1968/Task-Manager/blob/master/Images/Screenshot1.png?raw=true)
+![screenshot2](https://github.com/collins1968/Task-Manager/blob/master/Images/Screenshot2.png?raw=true)
 
 ## Contributing
 
@@ -80,8 +87,8 @@ Contributions to the Project Title are welcome! Please follow the guidelines out
 This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
-
-For any inquiries or feedback, feel free to reach out to us at [contact@example.com](mailto:contact@example.com) or visit our GitHub profile: [github.com/your-username](https://github.com/your-username).
+For any inquiries or feedback, feel free to reach out to us at [contact@example.com](collinsmwendwa1968@gmail.com) or visit our GitHub profile: [github.com/collins1968](https://github.com/collins1968).
 
 We look forward to hearing from you and appreciate your interest in the Project Title! Happy task managing!
+
 
