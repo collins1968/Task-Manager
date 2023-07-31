@@ -1,4 +1,4 @@
-# Contributing to 
+# Contributing to Task Manager
 
 Thank you for your interest in contributing to Task Manager! We welcome contributions from the community to help improve our project.
 
@@ -8,11 +8,10 @@ Thank you for your interest in contributing to Task Manager! We welcome contribu
 
 2. Clone the forked repository to your local machine:
 
-   
-   `git clone https://github.com/collins1968/Task-Manager.`git`
-   `cd Task Manager``
+   `git clone https://github.com/collins1968/Task-Manager.git`
+   `cd Task Manager`
 3. Create a new branch for your contribution
-    `git checkout -b feature/your-feature-name``
+    `git checkout -b feature/your-feature-name`
 4. Make your changes to the codebase
 5. Commit your changes
     `git commit -m "Add your commit message here"`
